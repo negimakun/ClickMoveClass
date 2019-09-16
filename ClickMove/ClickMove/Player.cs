@@ -9,24 +9,28 @@ namespace ClickMove
 {
     class Player
     {
-        Renderer renderer;
 
         Vector2 mouseClickPosition;
 
         Vector2 mousePosition;
         Vector2 clickPosition;
         Vector2 movePosition;
-        Vector2 rendPos;
+        public Vector2 rendPos;
         Vector2 limit;
+        public Vector2 plMasu;
 
         bool clickFlag = false;
+        public bool isDeadFlag = false;
+
         float time;
 
-        readonly int TextureSize = 32;
+        public int stuff;//肉食が食べた時にたまる満腹度
+
+        readonly int TextureSize = 50;
 
         public Player()
         {
-
+            stuff = 1;
         }
 
 
@@ -77,13 +81,17 @@ namespace ClickMove
                 rendPos = new Vector2((int)(movePosition.X / TextureSize) * TextureSize,
                     (int)(movePosition.Y / TextureSize) * TextureSize);
             }
+
+            plMasu = new Vector2((int)rendPos.X / TextureSize, (int)rendPos.Y / TextureSize);
         }
 
         public void Draw(Renderer renderer)
         {
-            renderer.DrawTexture("backpi", clickPosition);
             renderer.DrawTexture("backpi", mousePosition);
-            renderer.DrawTexture("boxor", rendPos);
+            if (!isDeadFlag)
+            {
+                renderer.DrawTexture("chikn", rendPos);
+            }
         }
     }
 }

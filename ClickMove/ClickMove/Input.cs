@@ -204,10 +204,4 @@ namespace ClickMove
             return preciousMouse.ScrollWheelValue - currentMouse.ScrollWheelValue;
         }
     }
-
-    class Screen
-    {
-        public static int ScreenWidth = 1300;
-        public static int ScreenHeight = 1000;
-    }
 }
